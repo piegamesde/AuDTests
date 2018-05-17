@@ -27,7 +27,7 @@ public class HashTests {
 	@Parameters(name = "{index}: hash({0}, {1})")
 	public static Collection<Object[]> data() {
 		Collection<Object[]> ret = new ArrayList<>();
-		for (int i = 1; i <= 4; i++) {
+		for (int i = 0; i < 5; i++) {
 			ret.add(new Object[] { HashTable.HASH_FUNCTION_DIVISION, i });
 			ret.add(new Object[] { HashTable.HASH_FUNCTION_FOLDING, i });
 			ret.add(new Object[] { HashTable.HASH_FUNCTION_MIDSQUARE, i });
