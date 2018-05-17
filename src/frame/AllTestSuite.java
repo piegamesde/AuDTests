@@ -1,10 +1,10 @@
 package frame;
 
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.platform.suite.api.SelectClasses;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
-@SuiteClasses({ AllTests.class, DotTests.class, HashTests.class })
+@RunWith(JUnitPlatform.class)
+@SelectClasses({ AllTests.class, DotTests.class, HashTests.class })
 public class AllTestSuite {
 }
