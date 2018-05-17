@@ -4,7 +4,7 @@ Da man nie genug Tests kriegen kann.
 
 ## Verwendung
 
-Einfach `lab.HashTable` mit eigener Implementierung überschreiben (abgesehen von den Konstanten ganz oben in der Klasse, die müssen bleiben). Dabei muss sichergestellt werden, dass es eine Methode `public int hash(String key)` gibt, ansonsten funktionieren die Tests nicht.
+Einfach `lab.HashTable` mit eigener Implementierung überschreiben (abgesehen von den Konstanten ganz oben in der Klasse, die müssen bleiben). Dabei muss sichergestellt werden, dass es eine Methode `public int hash(String key)` gibt, ansonsten funktionieren die Tests nicht. Die Klasse `TestGenerator` hat absichtlich Compile-Fehler (weil sie die Referenzimplementierung verwendet). Einfach ignorieren oder löschen.
 
 ## Neue Tests hinzufügen
 
