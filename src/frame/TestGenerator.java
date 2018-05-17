@@ -45,11 +45,17 @@ public class TestGenerator {
 			List<String> keys = Files.readAllLines(Paths.get("TestFile5"));
 			// List<String> keys = IntStream.range(0, 10000).mapToObj(i -> randomKey(5) + ";" + randomKey(4) + ";" + randomKey(2)).collect(Collectors.toList());
 			// Files.write(Paths.get("TestFile5"), keys);
+			System.out.println("a");
 			generateDot(keys, 5, HashTable.HASH_FUNCTION_DIVISION, HashTable.COLLISION_RESOLUTION_LINEARPROBING);
+			System.out.println("a");
 			generateDot(keys, 5, HashTable.HASH_FUNCTION_DIVISION, HashTable.COLLISION_RESOLUTION_QUADRATICPROBING);
+			System.out.println("a");
 			generateDot(keys, 5, HashTable.HASH_FUNCTION_FOLDING, HashTable.COLLISION_RESOLUTION_LINEARPROBING);
+			System.out.println("a");
 			generateDot(keys, 5, HashTable.HASH_FUNCTION_FOLDING, HashTable.COLLISION_RESOLUTION_QUADRATICPROBING);
+			System.out.println("a");
 			generateDot(keys, 5, HashTable.HASH_FUNCTION_MIDSQUARE, HashTable.COLLISION_RESOLUTION_LINEARPROBING);
+			System.out.println("a");
 			generateDot(keys, 5, HashTable.HASH_FUNCTION_MIDSQUARE, HashTable.COLLISION_RESOLUTION_QUADRATICPROBING);
 		}
 	}
