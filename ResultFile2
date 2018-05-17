@@ -1,0 +1,23 @@
+digraph {
+splines=true;
+nodesep=.01;
+rankdir=LR;
+node[fontsize=8,shape=record,height=.1];
+ht[fontsize=12,label="<f0>0|<f1>1|<f2>2|<f3>3|<f4>4|<f5>5|<f6>6|<f7>7|<f8>8|<f9>9|<f10>10"];
+node1[label="{<l>F0C9U7L8Q|OK|8, 9, 10}"];
+node2[label="{<l>Z8IG4LDXS|OK}"];
+node3[label="{<l>XOH3XGQ9Y|Error}"];
+node4[label="{<l>6C8IVERSY|Error}"];
+node5[label="{<l>YSI7QERSY|OK}"];
+node6[label="{<l>EMBXPGQ9Y|OK|6, 7}"];
+node7[label="{<l>0X6F9ERSY|OK}"];
+node8[label="{<l>5MXGT7L8Q|Error}"];
+ht:f0->node1:l;
+ht:f1->node2:l;
+ht:f4->node3:l;
+ht:f6->node4:l;
+ht:f7->node5:l;
+ht:f8->node6:l;
+ht:f9->node7:l;
+ht:f10->node8:l;
+}
