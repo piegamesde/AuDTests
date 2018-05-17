@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 import lab.HashTable;
+import p.HashTable3;
 
 public class TestGenerator {
 
@@ -54,12 +55,12 @@ public class TestGenerator {
 	}
 
 	private static void generateHashes(List<String> keys, int keyLength, String algorithm) throws IOException {
-		HashTable table = new HashTable((int) Math.pow(10, keyLength) * 4, algorithm, HashTable.COLLISION_RESOLUTION_LINEARPROBING);
+		HashTable3 table = new HashTable3((int) Math.pow(10, keyLength) * 4, algorithm, HashTable.COLLISION_RESOLUTION_LINEARPROBING);
 		Files.write(Paths.get("ResultFile3-" + algorithm + "-" + keyLength), keys.stream().map(table::hash).map(String::valueOf).collect(Collectors.toList()));
 	}
 
 	private static void generateDot(List<String> keys, int id, String algorithm, String probing) throws IOException {
-		HashTable table = new HashTable(10, algorithm, probing);
+		HashTable3 table = new HashTable3(10, algorithm, probing);
 		table.loadFromFile("TestFile" + id);
 		Files.write(Paths.get("ResultFile" + id + "-" + algorithm + "-" + probing + ".dot"), table.getHashTable());
 	}
