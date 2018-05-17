@@ -12,7 +12,7 @@ import p.HashTable2;
 public class TestGenerator {
 
 	public static void main(String[] args) throws IOException {
-		List<String> keys = IntStream.range(0, 100).mapToObj(i -> randomKey(9)).collect(Collectors.toList());
+		List<String> keys = IntStream.range(0, 1000).mapToObj(i -> randomKey(9)).collect(Collectors.toList());
 		Files.write(Paths.get("TestFile3"), keys);
 		for (int i = 1; i <= 5; i++) {
 			System.out.println(i + "-1");
