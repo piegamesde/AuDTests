@@ -4,16 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Test;
 import lab.HashTable;
 
-public class HashTests {
+public class HashTests1 {
 
 	@Test
-	public void simpleHashTest() {
+	public void foldingTest1() {
 		HashTable table = new HashTable(800, HashTable.HASH_FUNCTION_FOLDING, "linear_probing");
 		assertEquals(647, table.hash("Z8IG4LDXS"));
 	}
 
 	@Test
-	public void simpleHashTest2() {
+	public void foldingTest2() {
 		Entry testEntry1 = new Entry();
 		testEntry1.setKey("Z8IG4LDXS");
 		testEntry1.setData("OK");

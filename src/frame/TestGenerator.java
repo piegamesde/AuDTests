@@ -6,11 +6,36 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 import lab.HashTable;
-import p.HashTable3;
 
 public class TestGenerator {
 
 	public static void main(String[] args) throws IOException {
+		// generateZeroHashes();
+
+		generateTestFiles();
+	}
+
+	private static void generateZeroHashes() {
+		String data = "return Arrays.asList(new Object[][] {\n";
+		for (int i : HashTests2.CAPACITIES) {
+			data += "{ HashTable.HASH_FUNCTION_DIVISION, " + i + ", \"" + generateHash(i, HashTable.HASH_FUNCTION_DIVISION) + "\" },\n";
+			data += "{ HashTable.HASH_FUNCTION_FOLDING, " + i + ", \"" + generateHash(i, HashTable.HASH_FUNCTION_FOLDING) + "\" },\n";
+			data += "{ HashTable.HASH_FUNCTION_MIDSQUARE, " + i + ", \"" + generateHash(i, HashTable.HASH_FUNCTION_MIDSQUARE) + "\" },\n";
+		}
+		data = data.substring(0, data.length() - 2);
+		data += "\n});";
+		System.out.println(data);
+	}
+
+	private static String generateHash(int capacity, String algorithm) {
+		HashTable table = new HashTable(capacity, algorithm, HashTable.COLLISION_RESOLUTION_LINEARPROBING);
+		String hash = randomKey(9);
+		while (table.hash(hash) != 0)
+			hash = randomKey(9);
+		return hash;
+	}
+
+	private static void generateTestFiles() throws IOException {
 		// if (true)
 		// return;
 		// ;
@@ -58,15 +83,34 @@ public class TestGenerator {
 			System.out.println("a");
 			generateDot(keys, 5, HashTable.HASH_FUNCTION_MIDSQUARE, HashTable.COLLISION_RESOLUTION_QUADRATICPROBING);
 		}
+		{
+			System.out.println("Dot files");
+			List<String> keys = Files.readAllLines(Paths.get("TestFile6"));
+			// List<String> keys = IntStream.range(0, 10000).mapToObj(i -> randomKey(5) + ";" + randomKey(4) + ";" + randomKey(2)).collect(Collectors.toList());
+			// Files.write(Paths.get("TestFile6"), keys);
+			System.out.println("a");
+			generateDot(keys, 6, HashTable.HASH_FUNCTION_DIVISION, HashTable.COLLISION_RESOLUTION_LINEARPROBING);
+			System.out.println("a");
+			generateDot(keys, 6, HashTable.HASH_FUNCTION_DIVISION, HashTable.COLLISION_RESOLUTION_QUADRATICPROBING);
+			System.out.println("a");
+			generateDot(keys, 6, HashTable.HASH_FUNCTION_FOLDING, HashTable.COLLISION_RESOLUTION_LINEARPROBING);
+			System.out.println("a");
+			generateDot(keys, 6, HashTable.HASH_FUNCTION_FOLDING, HashTable.COLLISION_RESOLUTION_QUADRATICPROBING);
+			System.out.println("a");
+			generateDot(keys, 6, HashTable.HASH_FUNCTION_MIDSQUARE, HashTable.COLLISION_RESOLUTION_LINEARPROBING);
+			System.out.println("a");
+			generateDot(keys, 6, HashTable.HASH_FUNCTION_MIDSQUARE, HashTable.COLLISION_RESOLUTION_QUADRATICPROBING);
+		}
+
 	}
 
 	private static void generateHashes(List<String> keys, int keyLength, String algorithm) throws IOException {
-		HashTable3 table = new HashTable3((int) Math.pow(10, keyLength) * 4, algorithm, HashTable.COLLISION_RESOLUTION_LINEARPROBING);
+		HashTable table = new HashTable((int) Math.pow(10, keyLength) * 4, algorithm, HashTable.COLLISION_RESOLUTION_LINEARPROBING);
 		Files.write(Paths.get("ResultFile3-" + algorithm + "-" + keyLength), keys.stream().map(table::hash).map(String::valueOf).collect(Collectors.toList()));
 	}
 
 	private static void generateDot(List<String> keys, int id, String algorithm, String probing) throws IOException {
-		HashTable3 table = new HashTable3(10, algorithm, probing);
+		HashTable table = new HashTable(10, algorithm, probing);
 		table.loadFromFile("TestFile" + id);
 		Files.write(Paths.get("ResultFile" + id + "-" + algorithm + "-" + probing + ".dot"), table.getHashTable());
 	}

@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import lab.HashTable;
 
-public class DotTests {
+public class DotTests1 {
 
 	/** Tests the .dot file from the PDF */
 	@Test

@@ -45,10 +45,19 @@ public class DotTests2 {
 	}
 
 	@Test
-	public void hashTestLarge() throws IOException {
+	public void hashTestMedium() throws IOException {
 		HashTable table = new HashTable(10, algorithm, probing);
 		List<String> expected = Files.readAllLines(Paths.get("ResultFile5-" + algorithm + "-" + probing + ".dot"));
 		table.loadFromFile("TestFile5");
+		List<String> real = table.getHashTable();
+		assertLinesMatch(expected, real);
+	}
+
+	@Test
+	public void hashTestLarge() throws IOException {
+		HashTable table = new HashTable(10, algorithm, probing);
+		List<String> expected = Files.readAllLines(Paths.get("ResultFile6-" + algorithm + "-" + probing + ".dot"));
+		table.loadFromFile("TestFile6");
 		List<String> real = table.getHashTable();
 		assertLinesMatch(expected, real);
 	}
