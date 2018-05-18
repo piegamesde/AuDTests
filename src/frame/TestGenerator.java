@@ -68,7 +68,7 @@ public class TestGenerator {
 		{
 			System.out.println("Dot files");
 			List<String> keys = Files.readAllLines(Paths.get("TestFile5"));
-			// List<String> keys = IntStream.range(0, 10000).mapToObj(i -> randomKey(5) + ";" + randomKey(4) + ";" + randomKey(2)).collect(Collectors.toList());
+			// List<String> keys = IntStream.range(0, 1000).mapToObj(i -> randomKey(5) + ";" + randomKey(4) + ";" + randomKey(2)).collect(Collectors.toList());
 			// Files.write(Paths.get("TestFile5"), keys);
 			System.out.println("a");
 			generateDot(keys, 5, HashTable.HASH_FUNCTION_DIVISION, HashTable.COLLISION_RESOLUTION_LINEARPROBING);
