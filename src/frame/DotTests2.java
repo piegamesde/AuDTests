@@ -1,6 +1,7 @@
 package frame;
 
 import static org.junit.jupiter.api.Assertions.assertLinesMatch;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -17,6 +18,12 @@ import lab.HashTable;
 
 @RunWith(value = Parameterized.class)
 public class DotTests2 {
+
+	// Set one of these to false to disable the respective tests
+
+	public static final boolean	TEST_SMALL	= true;
+	public static final boolean	TEST_MEDIUM	= true;
+	public static final boolean	TEST_LARGE	= true;
 
 	@Parameter(value = 0)
 	public String	algorithm;
@@ -38,6 +45,8 @@ public class DotTests2 {
 
 	@Test
 	public void hashTestSmall() throws IOException {
+		assertTrue(TEST_SMALL, "Skipping small tests due to configuration");
+
 		HashTable table = new HashTable(10, algorithm, probing);
 		List<String> expected = Files.readAllLines(Paths.get("data/ResultFile4-" + algorithm + "-" + probing + ".dot"));
 		table.loadFromFile("data/TestFile4");
@@ -47,6 +56,8 @@ public class DotTests2 {
 
 	@Test
 	public void hashTestMedium() throws IOException {
+		assertTrue(TEST_MEDIUM, "Skipping medium tests due to configuration");
+
 		HashTable table = new HashTable(10, algorithm, probing);
 		List<String> expected = Files.readAllLines(Paths.get("data/ResultFile5-" + algorithm + "-" + probing + ".dot"));
 		table.loadFromFile("data/TestFile5");
@@ -56,6 +67,8 @@ public class DotTests2 {
 
 	@Test
 	public void hashTestLarge() throws IOException {
+		assertTrue(TEST_LARGE, "Skipping large tests due to configuration");
+
 		HashTable table = new HashTable(10, algorithm, probing);
 		List<String> expected = Files.readAllLines(Paths.get("data/ResultFile6-" + algorithm + "-" + probing + ".dot"));
 		table.loadFromFile("data/TestFile6");

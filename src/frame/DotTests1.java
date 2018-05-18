@@ -1,6 +1,5 @@
 package frame;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertLinesMatch;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,7 +17,6 @@ public class DotTests1 {
 		table.loadFromFile("data/TestFile2");
 		List<String> lines = table.getHashTable();
 		List<String> expected = Files.readAllLines(Paths.get("data/ResultFile2"));
-		assertEquals(expected.size(), lines.size());
 		assertLinesMatch(expected, lines);
 	}
 }
