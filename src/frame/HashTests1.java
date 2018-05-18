@@ -27,4 +27,26 @@ public class HashTests1 {
 		assertEquals(5, table.hash("Z8IG4LDXS"));
 		assertEquals(5, table.hash("Z7IG5LDXS"));
 	}
+
+	@Test
+	public void foldingTestZero() {
+		HashTable table;
+		table = new HashTable(2, "folding", "linear_probing");
+		assertEquals(0, table.hash("JFTM5Q1WZ"));
+		table = new HashTable(5, "folding", "linear_probing");
+		assertEquals(0, table.hash("MJPM5N0VD"));
+		table = new HashTable(9, "folding", "linear_probing");
+		assertEquals(0, table.hash("6GRT7OF4C"));
+	}
+
+	@Test
+	public void midSquareTestZero() {
+		HashTable table;
+		table = new HashTable(2, Constants.HASH_FUNCTION_MIDSQUARE, "linear_probing");
+		assertEquals(0, table.hash("LC8BSNBQJ"));
+		table = new HashTable(5, Constants.HASH_FUNCTION_MIDSQUARE, "linear_probing");
+		assertEquals(0, table.hash("5C22E0SVU"));
+		table = new HashTable(9, Constants.HASH_FUNCTION_MIDSQUARE, "linear_probing");
+		assertEquals(0, table.hash("YWUF3HP8T"));
+	}
 }

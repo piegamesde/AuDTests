@@ -11,15 +11,14 @@ import lab.HashTable;
 public class TestGenerator {
 
 	public static void main(String[] args) throws IOException {
-		// generateZeroHashes();
+		generateZeroHashes();
 
-		generateTestFiles();
+		// generateTestFiles();
 	}
 
 	private static void generateZeroHashes() {
 		String data = "return Arrays.asList(new Object[][] {\n";
 		for (int i : HashTests2.CAPACITIES) {
-			data += "{ Constants.HASH_FUNCTION_DIVISION, " + i + ", \"" + generateHash(i, Constants.HASH_FUNCTION_DIVISION) + "\" },\n";
 			data += "{ Constants.HASH_FUNCTION_FOLDING, " + i + ", \"" + generateHash(i, Constants.HASH_FUNCTION_FOLDING) + "\" },\n";
 			data += "{ Constants.HASH_FUNCTION_MIDSQUARE, " + i + ", \"" + generateHash(i, Constants.HASH_FUNCTION_MIDSQUARE) + "\" },\n";
 		}
@@ -30,10 +29,16 @@ public class TestGenerator {
 
 	private static String generateHash(int capacity, String algorithm) {
 		HashTable table = new HashTable(capacity, algorithm, Constants.COLLISION_RESOLUTION_LINEARPROBING);
-		String hash = randomKey(9);
-		while (table.hash(hash) != 0)
-			hash = randomKey(9);
-		return hash;
+
+		while (true) {
+			String hash = randomKey(9);
+			int value = table.hash(hash);
+			// System.out.println(capacity + " " + hash + " " + value);
+			if (value != 0 && (value % capacity) == 0) {
+				System.out.println(capacity + " " + hash + " " + value);
+				return hash;
+			}
+		}
 	}
 
 	private static void generateTestFiles() throws IOException {
