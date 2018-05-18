@@ -2,13 +2,14 @@ package frame;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Test;
+import lab.Constants;
 import lab.HashTable;
 
 public class HashTests1 {
 
 	@Test
 	public void foldingTest1() {
-		HashTable table = new HashTable(800, HashTable.HASH_FUNCTION_FOLDING, "linear_probing");
+		HashTable table = new HashTable(800, Constants.HASH_FUNCTION_FOLDING, "linear_probing");
 		assertEquals(647, table.hash("Z8IG4LDXS"));
 	}
 

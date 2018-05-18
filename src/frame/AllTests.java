@@ -2,22 +2,17 @@ package frame;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.ArrayList;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestReporter;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-
+import org.junit.jupiter.api.TestReporter;
 import lab.HashTable;
 
 @DisplayName("HashTable tests")
@@ -69,7 +64,7 @@ public class AllTests {
 		@DisplayName("Read test file")
 		public void testReadTestFile1_DivisionLinear(TestReporter reporter) {
 			HashTable table = new HashTable(10, "division", "linear_probing");
-			int loaded = table.loadFromFile("TestFile1");
+			int loaded = table.loadFromFile("data/TestFile1");
 			assertTrue(loaded == 19, "Didn't load 19 entries from TestFile1 with division and linear_probing.");
 		}
 
@@ -163,7 +158,7 @@ public class AllTests {
 		@DisplayName("Read test file")
 		public void testReadTestFile1_DivisionQuadratic() {
 			HashTable table = new HashTable(10, "division", "quadratic_probing");
-			assertTrue(table.loadFromFile("TestFile1") == 19,
+			assertTrue(table.loadFromFile("data/TestFile1") == 19,
 					"Didn't load 19 entries from TestFile1 with division and quadratic_probing.");
 		}
 
@@ -244,7 +239,7 @@ public class AllTests {
 		@DisplayName("Read test file")
 		public void testReadTestFile1_MidSquareLinear() {
 			HashTable table = new HashTable(10, "mid_square", "linear_probing");
-			assertTrue(table.loadFromFile("TestFile1") == 19,
+			assertTrue(table.loadFromFile("data/TestFile1") == 19,
 					"Didn't load 19 entries from TestFile1 with mid_square and linear_probing.");
 		}
 
@@ -334,7 +329,7 @@ public class AllTests {
 		@DisplayName("Read test file")
 		public void testReadTestFile1_MidSquareQuadractic() {
 			HashTable table = new HashTable(10, "mid_square", "quadratic_probing");
-			assertTrue(table.loadFromFile("TestFile1") == 19,
+			assertTrue(table.loadFromFile("data/TestFile1") == 19,
 					"Didn't load 19 entries from TestFile1 with mid_square and quadratic_probing.");
 		}
 
@@ -424,7 +419,7 @@ public class AllTests {
 		@DisplayName("Read test file")
 		public void testReadTestFile1_FoldingLinear() {
 			HashTable table = new HashTable(10, "folding", "linear_probing");
-			assertTrue(table.loadFromFile("TestFile1") == 19,
+			assertTrue(table.loadFromFile("data/TestFile1") == 19,
 					"Didn't load 19 entries from TestFile1 with folding and linear_probing.");
 		}
 
@@ -513,7 +508,7 @@ public class AllTests {
 		@DisplayName("Read test file")
 		public void testReadTestFile1_FoldingQuadratic() {
 			HashTable table = new HashTable(10, "folding", "quadratic_probing");
-			assertTrue(table.loadFromFile("TestFile1") == 19,
+			assertTrue(table.loadFromFile("data/TestFile1") == 19,
 					"Didn't load 19 entries from TestFile1 with folding and quadratic_probing.");
 		}
 

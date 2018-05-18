@@ -15,9 +15,9 @@ public class DotTests1 {
 	@Test
 	public void testDotFile() throws IOException {
 		HashTable table = new HashTable(11, "division", "linear_probing");
-		table.loadFromFile("TestFile2");
+		table.loadFromFile("data/TestFile2");
 		List<String> lines = table.getHashTable();
-		List<String> expected = Files.readAllLines(Paths.get("ResultFile2"));
+		List<String> expected = Files.readAllLines(Paths.get("data/ResultFile2"));
 		assertEquals(expected.size(), lines.size());
 		assertLinesMatch(expected, lines);
 	}

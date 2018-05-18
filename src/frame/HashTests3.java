@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
+import lab.Constants;
 import lab.HashTable;
 
 @RunWith(value = Parameterized.class)
@@ -28,9 +29,9 @@ public class HashTests3 {
 	public static Collection<Object[]> data() {
 		Collection<Object[]> ret = new ArrayList<>();
 		for (int i = 0; i < 5; i++) {
-			ret.add(new Object[] { HashTable.HASH_FUNCTION_DIVISION, i });
-			ret.add(new Object[] { HashTable.HASH_FUNCTION_FOLDING, i });
-			ret.add(new Object[] { HashTable.HASH_FUNCTION_MIDSQUARE, i });
+			ret.add(new Object[] { Constants.HASH_FUNCTION_DIVISION, i });
+			ret.add(new Object[] { Constants.HASH_FUNCTION_FOLDING, i });
+			ret.add(new Object[] { Constants.HASH_FUNCTION_MIDSQUARE, i });
 		}
 		return ret;
 	}
@@ -38,8 +39,8 @@ public class HashTests3 {
 	@Test
 	public void hashTest() throws IOException {
 		HashTable table = new HashTable((int) Math.pow(10, keyLength) * 4, algorithm, "linear_probing");
-		List<String> keys = Files.readAllLines(Paths.get("TestFile3"));
-		List<String> expected = Files.readAllLines(Paths.get("ResultFile3-" + algorithm + "-" + keyLength));
+		List<String> keys = Files.readAllLines(Paths.get("data/TestFile3"));
+		List<String> expected = Files.readAllLines(Paths.get("data/ResultFile3-" + algorithm + "-" + keyLength));
 		List<String> real = keys.stream().map(table::hash).map(String::valueOf).collect(Collectors.toList());
 		for (int i = 0; i < keys.size(); i++)
 			assertEquals(expected.get(i), real.get(i), "Line " + (i + 1) + ", key " + keys.get(i) + " is wrong with " + algorithm + ", key length " + keyLength);
