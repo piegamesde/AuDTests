@@ -15,7 +15,7 @@ import lab.HashTable;
 @RunWith(value = Parameterized.class)
 public class HashTests2 {
 
-	public static final int[]	CAPACITIES	= { 2, 5, 9, 10, 11, 50, 101, 497, 999, 1001, 2048 };
+	public static final int[]	CAPACITIES	= { 2, 5, 9, 10, 11, 50, 101, 497, 1001, 5000, 9867 };
 
 	@Parameter(value = 0)
 	public String				algorithm;
@@ -24,50 +24,40 @@ public class HashTests2 {
 	public int					capacity;
 
 	@Parameter(value = 2)
-	public String				key;
+	public String[]				keys;
 
-	@Parameters(name = "{index}: hash({0}, {2})=0")
+	@Parameters(name = "hash({2})=0 with {0} and capacity {1}")
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] {
-				{ Constants.HASH_FUNCTION_DIVISION, 2, "Q07DLKQG8" },
-				{ Constants.HASH_FUNCTION_FOLDING, 2, "E4ZZRMY97" },
-				{ Constants.HASH_FUNCTION_MIDSQUARE, 2, "NX60DS9QF" },
-				{ Constants.HASH_FUNCTION_DIVISION, 5, "JH7S7X5W9" },
-				{ Constants.HASH_FUNCTION_FOLDING, 5, "86QR8U3VA" },
-				{ Constants.HASH_FUNCTION_MIDSQUARE, 5, "Y7OSV4P47" },
-				{ Constants.HASH_FUNCTION_DIVISION, 9, "YLNTEGN3F" },
-				{ Constants.HASH_FUNCTION_FOLDING, 9, "0798W25NV" },
-				{ Constants.HASH_FUNCTION_MIDSQUARE, 9, "1GKZBNZEX" },
-				{ Constants.HASH_FUNCTION_DIVISION, 10, "P70XZ1WHS" },
-				{ Constants.HASH_FUNCTION_FOLDING, 10, "F9RN39KGH" },
-				{ Constants.HASH_FUNCTION_MIDSQUARE, 10, "PKBL02XAR" },
-				{ Constants.HASH_FUNCTION_DIVISION, 11, "89232WMW8" },
-				{ Constants.HASH_FUNCTION_FOLDING, 11, "NJGXAG9Z8" },
-				{ Constants.HASH_FUNCTION_MIDSQUARE, 11, "GV87E6DV6" },
-				{ Constants.HASH_FUNCTION_DIVISION, 50, "6DID2R1BV" },
-				{ Constants.HASH_FUNCTION_FOLDING, 50, "5PPFFM99R" },
-				{ Constants.HASH_FUNCTION_MIDSQUARE, 50, "8PN2E8WTQ" },
-				{ Constants.HASH_FUNCTION_DIVISION, 101, "C1KLT5EU5" },
-				{ Constants.HASH_FUNCTION_FOLDING, 101, "ZJJHURJBQ" },
-				{ Constants.HASH_FUNCTION_MIDSQUARE, 101, "IFLTD3G62" },
-				{ Constants.HASH_FUNCTION_DIVISION, 497, "R7UD65ZIK" },
-				{ Constants.HASH_FUNCTION_FOLDING, 497, "5HM91WXLG" },
-				{ Constants.HASH_FUNCTION_MIDSQUARE, 497, "MBTYKCL1Q" },
-				{ Constants.HASH_FUNCTION_DIVISION, 999, "1HA5CELNE" },
-				{ Constants.HASH_FUNCTION_FOLDING, 999, "CMLF6FW07" },
-				{ Constants.HASH_FUNCTION_MIDSQUARE, 999, "7YUEK62N1" },
-				{ Constants.HASH_FUNCTION_DIVISION, 1001, "HORK79ABB" },
-				{ Constants.HASH_FUNCTION_FOLDING, 1001, "78KHPLJJL" },
-				{ Constants.HASH_FUNCTION_MIDSQUARE, 1001, "TL7LJSYTF" },
-				{ Constants.HASH_FUNCTION_DIVISION, 2048, "ZZTWDWU3I" },
-				{ Constants.HASH_FUNCTION_FOLDING, 2048, "SLUFL6TY6" },
-				{ Constants.HASH_FUNCTION_MIDSQUARE, 2048, "I5YRVFSVQ" }
+				{ Constants.HASH_FUNCTION_FOLDING, 2, new String[] { "8E926", "YZI1C", "0TTXG" } },
+				{ Constants.HASH_FUNCTION_MIDSQUARE, 2, new String[] { "7951D", "GJOJJ", "CEW0Q" } },
+				{ Constants.HASH_FUNCTION_FOLDING, 5, new String[] { "LSB4B", "37J3F", "WZV5M" } },
+				{ Constants.HASH_FUNCTION_MIDSQUARE, 5, new String[] { "SUZZZ", "E1WEM", "XF4Q6" } },
+				{ Constants.HASH_FUNCTION_FOLDING, 9, new String[] { "4XZZZ", "7BWPE", "FWWRT" } },
+				{ Constants.HASH_FUNCTION_MIDSQUARE, 9, new String[] { "R82G7", "1YS0G", "BAIWO" } },
+				{ Constants.HASH_FUNCTION_FOLDING, 10, new String[] { "HOCJ8", "X1D3J", "8T4XV", "Y3SBD" } },
+				{ Constants.HASH_FUNCTION_MIDSQUARE, 10, new String[] { "KPZZZ", "KRWQD", "ZHKP4" } },
+				{ Constants.HASH_FUNCTION_FOLDING, 11, new String[] { "0BK2C", "QLCHK", "5ASQU", "O414H" } },
+				{ Constants.HASH_FUNCTION_MIDSQUARE, 11, new String[] { "GYHCA", "6O8ML", "6L2CR" } },
+				{ Constants.HASH_FUNCTION_FOLDING, 50, new String[] { "6E1VA", "33G2L", "PG2DT" } },
+				{ Constants.HASH_FUNCTION_MIDSQUARE, 50, new String[] { "QZURC", "NA2DK", "3Y8AV" } },
+				{ Constants.HASH_FUNCTION_FOLDING, 101, new String[] { "HDTZZ", "GJUEE", "IY854" } },
+				{ Constants.HASH_FUNCTION_MIDSQUARE, 101, new String[] { "R8ZK9", "MMPYH", "VL69R" } },
+				{ Constants.HASH_FUNCTION_FOLDING, 497, new String[] { "FEBY5", "9CU5I", "NT3BT" } },
+				{ Constants.HASH_FUNCTION_MIDSQUARE, 497, new String[] { "7ZRPE", "0WA9M", "LIIYT" } },
+				{ Constants.HASH_FUNCTION_FOLDING, 1001, new String[] { "YH2UZ", "JK0UI", "K8FIA" } },
+				{ Constants.HASH_FUNCTION_MIDSQUARE, 1001, new String[] { "4S4D5", "XVTSI", "DID3T" } },
+				{ Constants.HASH_FUNCTION_FOLDING, 5000, new String[] { "INU30", "SJA5I", "BVIHO" } },
+				{ Constants.HASH_FUNCTION_MIDSQUARE, 5000, new String[] { "MMS05", "OYUUH", "VHD4R" } },
+				{ Constants.HASH_FUNCTION_FOLDING, 9867, new String[] { "LUYW6", "TKRQC", "5WA5M" } },
+				{ Constants.HASH_FUNCTION_MIDSQUARE, 9867, new String[] { "EZ3N6", "UXU1P", "EFFOY" } }
 		});
 	}
 
 	@Test
-	public void hashTest() throws IOException {
+	public void hashTestZero() throws IOException {
 		HashTable table = new HashTable(capacity, algorithm, "linear_probing");
-		assertEquals(0, table.hash(key));
+		for (String key : keys)
+			assertEquals(0, table.hash(key));
 	}
 }

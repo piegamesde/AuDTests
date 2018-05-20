@@ -21,15 +21,17 @@ public class DotTests2 {
 
 	// Set one of these to false to disable the respective tests
 
-	public static final boolean	TEST_SMALL	= true;
-	public static final boolean	TEST_MEDIUM	= true;
-	public static final boolean	TEST_LARGE	= true;
+	public static final boolean	TEST_SMALL		= true;
+	public static final boolean	TEST_MEDIUM		= true;
+	public static final boolean	TEST_LARGE		= true;
+
+	public static final int		MAX_ITEM_COUNT	= 100;
 
 	@Parameter(value = 0)
-	public String	algorithm;
+	public String				algorithm;
 
 	@Parameter(value = 1)
-	public String	probing;
+	public String				probing;
 
 	@Parameters(name = "{index}: dot({0}, {1})")
 	public static Collection<Object[]> data() {
@@ -75,4 +77,24 @@ public class DotTests2 {
 		List<String> real = table.getHashTable();
 		assertLinesMatch(expected, real);
 	}
+
+	// @Test
+	// public void hashTestProgressive() throws IOException {
+	// assertTrue(MAX_ITEM_COUNT <= 10000, "The test does not have more than 10.000 elements");
+	// assertTrue(MAX_ITEM_COUNT > 0, "Insert at least one element");
+	//
+	// HashTable table = new HashTable(10, algorithm, probing);
+	// List<String> keys = Files.readAllLines(Paths.get("data/TestFile7"));
+	// int i = 0;
+	// for (String key : keys) {
+	// Entry entry = new Entry();
+	// entry.setKey(key);
+	// entry.setData("NO DATA");
+	// table.insert(entry);
+	// // assertLinesMatch(
+	// // Files.readAllLines(Paths.get("data/insert/ResultFile7" + "-" + algorithm + "-" + probing + "-step" + i + ".dot")),
+	// // table.getHashTable());
+	// i++;
+	// }
+	// }
 }
