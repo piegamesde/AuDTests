@@ -9,17 +9,14 @@ package frame;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
 import lab.B_Tree;
 
 /**
@@ -28,7 +25,7 @@ import lab.B_Tree;
  */
 @DisplayName("B-Tree tests")
 public class AllTests {
-	
+
 	protected ArrayList<TestNode> nodes = new ArrayList<TestNode>();
 	protected ArrayList<String> node_names = new ArrayList<String>();
 	protected ArrayList<String> pointers = new ArrayList<String>();
@@ -194,7 +191,7 @@ public class AllTests {
 		@DisplayName("Number of Nodes")
 		public void testInsertFile1_NumberOfNodes() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			ArrayList<String> out = b.getB_Tree();
 			ArrayList<TestNode> test_tree = constractB_Tree(out);
 			assertEquals(14, test_tree.size(), "Number of nodes not correct!");
@@ -204,7 +201,7 @@ public class AllTests {
 		@DisplayName("Height of Tree")
 		public void testInsertFile1_HeightOfTree() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			assertEquals(2, b.getB_TreeHeight(), "Height of the tree not correct!");
 		}
 
@@ -212,7 +209,7 @@ public class AllTests {
 		@DisplayName("Number of Entries")
 		public void testInsertFile1_NumberOfEntries() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			assertEquals(22, b.getB_TreeSize(), "Number of the entries is not correct!");
 		}
 
@@ -220,7 +217,7 @@ public class AllTests {
 		@DisplayName("Nodes of Tree")
 		public void testInsertFile1_NodesOfTree() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			ArrayList<String> out = b.getB_Tree();
 			constractB_Tree(out);
 			testNode("root", nodes.get(0), 3, 4, "FMF1QTZ0QKC83OJVA8SSG24YXB1");
@@ -243,7 +240,7 @@ public class AllTests {
 		@DisplayName("Order of Entries")
 		public void testInsertFile1_InOrderTraversal() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			assertTrue(testOrderOfEntries(b.getInorderTraversal()),
 					"getInorderTraversal() doesn't deliver entries in inorder traversal!");
 		}
@@ -252,7 +249,7 @@ public class AllTests {
 		@DisplayName("Balance of Tree")
 		public void testInsertFile1_Balanced() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			ArrayList<String> out = b.getB_Tree();
 			ArrayList<TestNode> test_tree = constractB_Tree(out);
 			assertTrue(isBalanced(test_tree.get(0)), "The Tree is not balanced!");
@@ -268,7 +265,7 @@ public class AllTests {
 		@DisplayName("Returned Entries")
 		public void testDeleteFile1_ReturnedEntries() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			Entry e1 = b.delete("L2Z7499YH");
 			Entry e2 = b.delete("FMF1QTZ0Q");
 			Entry e3 = b.delete("L2Z74TZ0Q");
@@ -281,7 +278,7 @@ public class AllTests {
 		@DisplayName("Number of Nodes")
 		public void testDeleteFile1_NumberOfNodes() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			b.delete("L2Z7499YH");
 			b.delete("FMF1QTZ0Q");
 			b.delete("L2Z74TZ0Q");
@@ -294,7 +291,7 @@ public class AllTests {
 		@DisplayName("Height of Tree")
 		public void testDeleteFile1_HeightOfTree() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			b.delete("L2Z7499YH");
 			b.delete("FMF1QTZ0Q");
 			b.delete("L2Z74TZ0Q");
@@ -305,7 +302,7 @@ public class AllTests {
 		@DisplayName("Number of Entries")
 		public void testDeleteFile1_NumberOfEntries() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			b.delete("L2Z7499YH");
 			b.delete("FMF1QTZ0Q");
 			b.delete("L2Z74TZ0Q");
@@ -317,7 +314,7 @@ public class AllTests {
 		@DisplayName("Nodes of Tree")
 		public void testDeleteFile1_NodesOfTree() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			b.delete("L2Z7499YH");
 			b.delete("FMF1QTZ0Q");
 			b.delete("L2Z74TZ0Q");
@@ -341,7 +338,7 @@ public class AllTests {
 		@DisplayName("Order of Entries")
 		public void testDeleteFile1_InOrderTraversal() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			b.delete("L2Z7499YH");
 			b.delete("FMF1QTZ0Q");
 			b.delete("L2Z74TZ0Q");
@@ -353,7 +350,7 @@ public class AllTests {
 		@DisplayName("Balance of Tree")
 		public void testDeleteFile1_Balanced() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			b.delete("L2Z7499YH");
 			b.delete("FMF1QTZ0Q");
 			b.delete("L2Z74TZ0Q");
@@ -372,7 +369,7 @@ public class AllTests {
 		@DisplayName("Returned Entries")
 		public void testfindFile1_ReturnedEntries() {
 			B_Tree b = new B_Tree(2);
-			b.constructB_TreeFromFile("TestFile1.txt");
+			b.constructB_TreeFromFile("data/TestFile1.txt");
 			Entry e1 = b.find("SSG24YXB1");
 			Entry e2 = b.find("SSG27YXB1");
 			assertEquals("SSG24;YXB1;Error", e1.toString(), "find(SSG24YXB1) output not correct!");
