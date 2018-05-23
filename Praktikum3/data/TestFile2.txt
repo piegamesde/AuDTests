@@ -1,0 +1,12 @@
+digraph {
+node[shape=record];
+root[label="<f0>*|<f1>42|<f2>*|<f3>55|<f4>*|<f5>77|<f6>*"];
+node2[label="<f0>*|<f1>11|<f2>*|<f3>18|<f4>*|<f5>31|<f6>*"];
+node3[label="<f0>*|<f1>43|<f2>*|<f3>47|<f4>*"];
+node4[label="<f0>*|<f1>62|<f2>*|<f3>71|<f4>*"];
+node5[label="<f0>*|<f1>83|<f2>*|<f3>91|<f4>*|<f5>99|<f6>*"];
+root:f0->node2;
+root:f2->node3;
+root:f4->node4;
+root:f6->node5;
+}
