@@ -2,7 +2,13 @@
 
 Da man nie genug Tests kriegen kann. (Und die bereits vorhandenen Tests vorsichtig ausgedrückt _suboptimal_ sind)
 
-## Verwendung:
+## B-Tree
+
+Einfach das `lab`-Paket durch die eigene Implementierung ersetzen.
+
+## HashTable
+
+### Verwendung:
 
 Einfach `lab.HashTable` mit eigener Implementierung überschreiben. Dabei muss sichergestellt werden, dass es eine Methode `public int hash(String key)` gibt, ansonsten funktionieren die Tests nicht. Die Methode sollte ungefähr so aussehen (letztendlich kommt es aber auf die Funktionalität an):
 
@@ -22,7 +28,7 @@ Einfach `lab.HashTable` mit eigener Implementierung überschreiben. Dabei muss s
 	}
 ```
 
-## Weitere Hinweise:
+### Weitere Hinweise:
 
 - Die Tests sollten in folgender Reihenfolge bearbeitet werden: `HashTests1`, `HashTests2`, `HashTests3`, `DotTests1`, `DotTests2`, `AllTests`.
 - Bei `DotTests2` gibt es drei Tests pro Konfiguration, mit jeweils 100, 1000 und 10.000 Elementen. Bei suboptimalen Implementierungen können diese sehr lange dauern. Deshalb lassen sie sich im Kopf der Klasse einzeln ein- und ausschalten.
