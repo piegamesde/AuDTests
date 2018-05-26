@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertLinesMatch;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
@@ -27,67 +30,51 @@ public class MoreTests1 {
 
 	// This test is WIP and won't do anything
 	@Test
-	public void simpleInsertDeleteTest() {
-		if (true)
-			return;
+	public void simpleInsertDeleteTest() throws NumberFormatException, IOException {
 		// Folie 49
 		// .............. "P"
 		// ..... "CL", ............. "TX"
 		// "AB", "DEJK", "NO"; "QRS", "UV", "YZ"
-		// --> "Delete D"
+
+		final boolean generate = false;
+
+		int index = 0;
+		Map<Integer, LinkedList<String>> lines = new HashMap<>();
+		if (!generate) {
+			for (String s : Files.readAllLines(Paths.get("data/TestFile4.txt"))) {
+				int i = Integer.parseInt(s.split("-")[0]);
+				if (!lines.containsKey(i))
+					lines.put(i, new LinkedList<>());
+				lines.get(i).add(s.substring(s.indexOf('-') + 1));
+			}
+		}
+
 		B_Tree tree = new B_Tree(3);
 		for (char s : "ABCDELNOJKPQRTUVXYZWS".toCharArray()) {
-			// System.out.println("Insert " + s);
 			tree.insert(new Entry("" + s, "", "OK"));
+			if (generate)
+				for (String line : tree.getB_Tree())
+					System.out.println(index + "-" +  line);
+			else {
+				Util.assertAscending(tree.getInorderTraversal());
+				Util.assertTreeEquals(lines.get(index), tree.getB_Tree());
+			}
+			index++;
 		}
 
 		tree.getInorderTraversal();
 
-		// assert tree equals
-		// Util.assertTreeEquals(expected, tree.getB_Tree());
-
-		tree.delete("D");
-		Util.printTree(tree);
-		Util.assertAscending(tree.getInorderTraversal());
-
-		tree.delete("F");
-		Util.printTree(tree);
-		Util.assertAscending(tree.getInorderTraversal());
-
-		tree.delete("C");
-		Util.printTree(tree);
-		Util.assertAscending(tree.getInorderTraversal());
-
-		tree.delete("V");
-		Util.printTree(tree);
-		Util.assertAscending(tree.getInorderTraversal());
-
-		tree.delete("Z");
-		Util.printTree(tree);
-		Util.assertAscending(tree.getInorderTraversal());
-
-		tree.delete("Y");
-		Util.printTree(tree);
-		Util.assertAscending(tree.getInorderTraversal());
-
-		tree.delete("O");
-		Util.printTree(tree);
-		Util.assertAscending(tree.getInorderTraversal());
-
-		tree.delete("N");
-		Util.printTree(tree);
-		Util.assertAscending(tree.getInorderTraversal());
-
-		tree.delete("K");
-		Util.printTree(tree);
-		Util.assertAscending(tree.getInorderTraversal());
-
-		tree.delete("L");
-		Util.printTree(tree);
-		Util.assertAscending(tree.getInorderTraversal());
-
-		// assert tree equals
-		// Util.assertTreeEquals(expected, tree.getB_Tree());
+		for (char s : "DFCVZYONKLAR".toCharArray()) {
+			tree.delete("" + s);
+			if (generate)
+				for (String line : tree.getB_Tree())
+					System.out.println(index +"-" +  line);
+			else {
+				Util.assertAscending(tree.getInorderTraversal());
+				Util.assertTreeEquals(lines.get(index), tree.getB_Tree());
+			}
+			index++;
+		}
 	}
 
 	/** Each bug a test. This may fail getting the size of the tree at the end */
@@ -113,7 +100,7 @@ public class MoreTests1 {
 			Entry entry = Util.getRandomEntry(random);
 			entries.add(entry);
 			tree.insert(entry);
-			assertEquals(i + 1, tree.getB_TreeSize());
+			assertEquals(entries.size(), tree.getB_TreeSize());
 			Util.assertHeight(tree.getB_TreeHeight(), tree.getB_TreeSize(), 2);
 		}
 		int size = entries.size();

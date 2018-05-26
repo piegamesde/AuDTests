@@ -94,7 +94,7 @@ public class Util {
 			}
 		}
 		if (!nodes.containsKey("root"))
-			fail("A root node is required in each dot file, but none was found");
+			fail("A root node is required in each dot file, but none was found in " + nodes);
 		return nodes.get("root");
 	}
 
@@ -128,5 +128,10 @@ public class Util {
 
 		assertTrue(height <= max, "Tree is too tall: Should be at most " + max + " for " + size + " elements with t=" + t + ", but was " + height);
 		assertTrue(height >= min, "Tree is too small: Should be at least " + max + " for " + size + " elements with t=" + t + ", but was " + height);
+	}
+
+	public static Entry removeRandomElement(B_Tree tree, Random random) {
+		List<Entry> entries = tree.getInorderTraversal();
+		return tree.delete(entries.get(random.nextInt(entries.size())).getKey());
 	}
 }

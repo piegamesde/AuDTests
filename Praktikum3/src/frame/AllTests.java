@@ -155,7 +155,6 @@ public class AllTests {
 
 			for (String string : dot) {
 				bw.write(string + System.getProperty("line.separator"));
-				System.out.println(string);
 			}
 
 			bw.close();
@@ -270,13 +269,9 @@ public class AllTests {
 		public void testDeleteFile1_ReturnedEntries() {
 			B_Tree b = new B_Tree(2);
 			b.constructB_TreeFromFile("data/TestFile1.txt");
-			Util.printTree(b);
 			Entry e1 = b.delete("L2Z7499YH");
-			Util.printTree(b);
 			Entry e2 = b.delete("FMF1QTZ0Q");
-			Util.printTree(b);
 			Entry e3 = b.delete("L2Z74TZ0Q");
-			Util.printTree(b);
 			assertEquals("L2Z74;99YH;Error", e1.toString(), "delete(L2Z7499YH) output not correct!");
 			assertEquals("FMF1Q;TZ0Q;Error", e2.toString(), "delete(FMF1QTZ0Q) output not correct!");
 			assertTrue(null == e3, "delete(L2Z74TZ0Q) output not correct!");

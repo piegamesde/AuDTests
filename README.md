@@ -4,7 +4,7 @@ Da man nie genug Tests kriegen kann. (Und die bereits vorhandenen Tests vorsicht
 
 ## B-Tree
 
-Einfach das `lab`-Paket durch die eigene Implementierung ersetzen.
+Einfach das `lab`-Paket durch die eigene Implementierung ersetzen. Zusammen mit den vorgegebenen Tests wird ein Coverage von effektiv 100% der Codezeilen in `B_TreeNode` erreicht. Die `AllTests` aus der Aufgabenstellung wurden ein wenig verbessert (mehr Assertions und bessere Fehlermeldungen). Die `MoreTests2` enthalten oben eine Konstante `MAX_TESTS`, mit welcher man die hinteren, größeren Tests überspringen kann. Um alle Tests zu starten, auf das `frame`-Paket mit Rechtsklick und dann "Run As" -> "JUnit Test" klicken. Referenzlaufzeit: 70s.
 
 ## HashTable
 
