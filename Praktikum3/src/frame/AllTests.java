@@ -8,6 +8,8 @@ package frame;
  */
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -49,11 +51,13 @@ public class AllTests {
 	}
 
 	protected boolean testOrderOfEntries(ArrayList<Entry> e) {
-		for (int i = 0; i < e.size() - 1; i++) {
-			if (e.get(i).compareTo(e.get(i + 1)) >= 0) {
-				return false;
-			}
-		}
+		// for (int i = 0; i < e.size() - 1; i++) {
+		// if (e.get(i).compareTo(e.get(i + 1)) >= 0) {
+		// return false;
+		// }
+		// }
+		// return true;
+		Util.assertAscending(e);
 		return true;
 	}
 
@@ -266,9 +270,13 @@ public class AllTests {
 		public void testDeleteFile1_ReturnedEntries() {
 			B_Tree b = new B_Tree(2);
 			b.constructB_TreeFromFile("data/TestFile1.txt");
+			Util.printTree(b);
 			Entry e1 = b.delete("L2Z7499YH");
+			Util.printTree(b);
 			Entry e2 = b.delete("FMF1QTZ0Q");
+			Util.printTree(b);
 			Entry e3 = b.delete("L2Z74TZ0Q");
+			Util.printTree(b);
 			assertEquals("L2Z74;99YH;Error", e1.toString(), "delete(L2Z7499YH) output not correct!");
 			assertEquals("FMF1Q;TZ0Q;Error", e2.toString(), "delete(FMF1QTZ0Q) output not correct!");
 			assertTrue(null == e3, "delete(L2Z74TZ0Q) output not correct!");
@@ -292,8 +300,11 @@ public class AllTests {
 		public void testDeleteFile1_HeightOfTree() {
 			B_Tree b = new B_Tree(2);
 			b.constructB_TreeFromFile("data/TestFile1.txt");
+			assertEquals(2, b.getB_TreeHeight(), "Height of the tree not correct!");
 			b.delete("L2Z7499YH");
+			assertEquals(2, b.getB_TreeHeight(), "Height of the tree not correct!");
 			b.delete("FMF1QTZ0Q");
+			assertEquals(2, b.getB_TreeHeight(), "Height of the tree not correct!");
 			b.delete("L2Z74TZ0Q");
 			assertEquals(2, b.getB_TreeHeight(), "Height of the tree not correct!");
 		}
@@ -303,10 +314,13 @@ public class AllTests {
 		public void testDeleteFile1_NumberOfEntries() {
 			B_Tree b = new B_Tree(2);
 			b.constructB_TreeFromFile("data/TestFile1.txt");
+			assertEquals(22, b.getB_TreeSize(), "Number of the entries is not correct!");
 			b.delete("L2Z7499YH");
+			assertEquals(21, b.getB_TreeSize(), "Number of the entries is not correct!");
 			b.delete("FMF1QTZ0Q");
+			assertEquals(20, b.getB_TreeSize(), "Number of the entries is not correct!");
 			b.delete("L2Z74TZ0Q");
-			b.getB_Tree();
+			// b.getB_Tree();
 			assertEquals(20, b.getB_TreeSize(), "Number of the entries is not correct!");
 		}
 
@@ -339,11 +353,13 @@ public class AllTests {
 		public void testDeleteFile1_InOrderTraversal() {
 			B_Tree b = new B_Tree(2);
 			b.constructB_TreeFromFile("data/TestFile1.txt");
-			b.delete("L2Z7499YH");
-			b.delete("FMF1QTZ0Q");
-			b.delete("L2Z74TZ0Q");
-			assertTrue(testOrderOfEntries(b.getInorderTraversal()),
-					"getInorderTraversal() doesn't deliver entries in inorder traversal!");
+			testOrderOfEntries(b.getInorderTraversal());
+			assertNotNull(b.delete("L2Z7499YH"), "Didn't delete L2Z7499YH but it was in there");
+			testOrderOfEntries(b.getInorderTraversal());
+			assertNotNull(b.delete("FMF1QTZ0Q"), "Didn't delete FMF1QTZ0Q but it was in there");
+			testOrderOfEntries(b.getInorderTraversal());
+			assertNull(b.delete("L2Z74TZ0Q"), "How can you delete L2Z74TZ0Q if it doesn't exist?");
+			testOrderOfEntries(b.getInorderTraversal());
 		}
 
 		@Test

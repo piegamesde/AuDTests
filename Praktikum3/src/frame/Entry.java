@@ -16,6 +16,10 @@ public class Entry implements EntryInterface, Comparable<Entry> {
         this.data = null;
     }
 
+	public Entry(String data) {
+		this(data.split(";")[0], data.split(";")[1], data.split(";")[2]);
+    }
+
     public Entry(String bookSerialNumber, String ReaderID, String Status) {
         this.key = new String(bookSerialNumber.concat(ReaderID));
         this.data = new String(Status);
