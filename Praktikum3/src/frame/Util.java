@@ -67,7 +67,7 @@ public class Util {
 
 	static void assertNodesEqual(String parent, Node expected, Node actual) {
 		assertThat("Child nodes from " + parent + " do not have matching data", actual.data, CoreMatchers.is(expected.data));
-		assertThat("Child nodes from" + parent + " do not have the same children", actual.childNodes(), CoreMatchers.is(expected.childNodes()));
+		assertEquals(expected.children.size(), actual.children.size(), "Child nodes from" + parent + " do not have the same amoumt of children");
 
 		expected.children.forEach(
 				(i, s) -> assertNodesEqual(parent + " -> " + s.name, s, actual.children.get(i)));

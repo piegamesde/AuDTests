@@ -1,7 +1,8 @@
 package frame;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertLinesMatch;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -24,7 +25,7 @@ public class MoreTests1 {
 			assertEquals(size++, tree.getB_TreeSize());
 			tree.insert(new Entry("" + i, "", "OK"));
 		}
-		assertLinesMatch(Files.readAllLines(Paths.get("data/TestFile3.txt")), tree.getB_Tree());
+		// assertLinesMatch(Files.readAllLines(Paths.get("data/TestFile3.txt")), tree.getB_Tree());
 		Util.assertTreeEquals(Files.readAllLines(Paths.get("data/TestFile3.txt")), tree.getB_Tree());
 	}
 
@@ -89,6 +90,26 @@ public class MoreTests1 {
 				tree.delete(s.substring(1));
 		}
 		tree.getB_TreeSize();
+	}
+
+	/**
+	 * Thanks to Roman
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	void simpleInsertDeleteTest3() throws IOException {
+		B_Tree tree = new B_Tree(2);
+		int count = 15;
+		for (int i = 0; i < count; i++) {
+			int num = 100 + i;
+			String key = String.valueOf(num);
+			assertTrue(tree.insert(new Entry(key, "", "")));
+		}
+		Util.assertTreeEquals(Files.readAllLines(Paths.get("data/TestFile6-1.txt")), tree.getB_Tree());
+		assertNotNull(tree.delete("103"));
+		assertEquals(tree.getB_TreeSize(), count - 1);
+		Util.assertTreeEquals(Files.readAllLines(Paths.get("data/TestFile6-2.txt")), tree.getB_Tree());
 	}
 
 	@Test
