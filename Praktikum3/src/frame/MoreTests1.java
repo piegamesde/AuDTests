@@ -2,6 +2,7 @@ package frame;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -50,9 +51,11 @@ public class MoreTests1 {
 			}
 		}
 
+		final String insertChars = "ABCDELNOJKPQRTUVXYZWS";
+
 		B_Tree tree = new B_Tree(3);
-		for (char s : "ABCDELNOJKPQRTUVXYZWS".toCharArray()) {
-			tree.insert(new Entry("" + s, "", "OK"));
+		for (char s : insertChars.toCharArray()) {
+			assertNotNull(tree.insert(new Entry("" + s, "", "OK")));
 			if (generate)
 				for (String line : tree.getB_Tree())
 					System.out.println(index + "-" +  line);
@@ -63,10 +66,13 @@ public class MoreTests1 {
 			index++;
 		}
 
-		tree.getInorderTraversal();
+		Util.assertAscending(tree.getInorderTraversal());
 
 		for (char s : "DFCVZYONKLAR".toCharArray()) {
-			tree.delete("" + s);
+			if (insertChars.contains("" + s))
+				assertNotNull(tree.delete("" + s));
+			else
+				assertNull(tree.delete("" + s));
 			if (generate)
 				for (String line : tree.getB_Tree())
 					System.out.println(index +"-" +  line);

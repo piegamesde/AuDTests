@@ -1,6 +1,7 @@
 package frame;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -61,7 +62,9 @@ public class MoreTests2 {
 			assertEquals(entries.size(), tree.getB_TreeSize());
 			Util.assertHeight(tree.getB_TreeHeight(), tree.getB_TreeSize(), degree);
 			if (random.nextBoolean() && !entries.isEmpty()) {
-				entries.remove(Util.removeRandomElement(tree, random));
+				Entry e = Util.removeRandomElement(tree, random);
+				assertNotNull(e);
+				entries.remove(e);
 			} else {
 				Entry entry = Util.getRandomEntry(random);
 				entries.add(entry);
