@@ -1,6 +1,7 @@
 package frame;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -136,5 +137,16 @@ public class MoreTests1 {
 			assertEquals(--size, tree.getB_TreeSize());
 			Util.assertHeight(tree.getB_TreeHeight(), tree.getB_TreeSize(), 2);
 		}
+	}
+
+	@Test
+	void edgeCaseSplit() throws IOException {
+		B_Tree tree = new B_Tree(2);
+		for (char s : "ABCDE".toCharArray()) {
+			assertTrue(tree.insert(new Entry("", "" + s, "")));
+		}
+		Util.assertTreeEquals(Files.readAllLines(Paths.get("data/TestFile7.txt")), tree.getB_Tree());
+		assertFalse(tree.insert(new Entry("", "E", "")));
+		Util.assertTreeEquals(Files.readAllLines(Paths.get("data/TestFile7.txt")), tree.getB_Tree());
 	}
 }
