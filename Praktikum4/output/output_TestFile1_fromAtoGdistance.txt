@@ -1,0 +1,20 @@
+digraph {
+A -> B [label="10,90"];
+A -> C [label="8,80"] [style=bold];
+C -> B [label="1,50"];
+B -> D [label="7,60"];
+C -> D [label="6,80"] [style=bold];
+D -> E [label="4,90"];
+E -> F [label="2,130"];
+D -> F [label="5,130"] [style=bold];
+F -> G [label="5,120"] [style=bold];
+G -> H [label="5,100"];
+A [label="A,0"];
+B [label="B,4"];
+C [label="C,3"];
+D [label="D,2"];
+E [label="E,1"];
+F [label="F,6"];
+G [label="G,7"];
+H [label="H,8"];
+}

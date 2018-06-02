@@ -2,6 +2,12 @@
 
 Da man nie genug Tests kriegen kann. (Und die bereits vorhandenen Tests vorsichtig ausgedrückt _suboptimal_ sind)
 
+## Installation
+
+Das Repository enthält einen Unterordner für jedes Praktikum, welches das Framework aus der Aufgabenstellung und zusätzliche oder verbesserte Tests enthält. Diese können ganz einfach in Eclipse importiert werden, und die Aufgaben lassen sich ganz normal darin bearbeiten. Um die Tests in bereits angefangene Lösungen zu integrieren, muss der `lab`-Ordner mit einer eigenen Implementierung überschrieben werden.
+
+Die Tests lassen sich mit dem Button oben "Clone or download" als zip herunterladen und verwenden. Allerdings ist es zu empfehlen, das Repository mit git zu clonen, weil die Tests regelmäßig verbessert und erweitert werden.
+
 ## B-Tree
 
 Einfach das `lab`-Paket durch die eigene Implementierung ersetzen. Zusammen mit den vorgegebenen Tests wird ein Coverage von effektiv 100% der Codezeilen in `B_TreeNode` erreicht. Die `AllTests` aus der Aufgabenstellung wurden ein wenig verbessert (mehr Assertions und bessere Fehlermeldungen). Die `MoreTests2` enthalten oben eine Konstante `MAX_TESTS`, mit welcher man die hinteren, größeren Tests überspringen kann. Um alle Tests zu starten, auf das `frame`-Paket mit Rechtsklick und dann "Run As" -> "JUnit Test" klicken. Referenzlaufzeit: 70s.
