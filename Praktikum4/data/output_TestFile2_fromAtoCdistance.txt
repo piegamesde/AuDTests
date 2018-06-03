@@ -1,0 +1,16 @@
+digraph {
+A -> B [label="3,100"] [style=bold];
+A -> F [label="16,80"];
+B -> C [label="5,80"] [style=bold];
+C -> D [label="4,80"];
+C -> E [label="7,100"];
+D -> E [label="2,40"];
+D -> F [label="8,30"];
+E -> F [label="4,60"];
+A [label="A,0"];
+B [label="B,2"];
+C [label="C,3"];
+D [label="D,1"];
+E [label="E,1"];
+F [label="F,2"];
+}
