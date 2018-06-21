@@ -1,0 +1,12 @@
+digraph {
+A -> C [label="10"];
+A -> D [label="5"];
+B -> D [label="8"];
+B -> E [label="7"];
+C -> F [label="15"];
+D -> C [label="20"];
+D -> F [label="18"];
+D -> G [label="5"];
+D -> E [label="20"];
+E -> G [label="30"];
+}

@@ -1,0 +1,19 @@
+digraph{
+Luisenplatz -> Taunus_Platz [label="10"];
+Luisenplatz  -> Schlossgartenplatz [label="5"];
+Kantplatz -> Schlossgartenplatz [label="8"];
+Kantplatz  -> Ernst_Ludwigsplatz [label="7"];
+Kantplatz  -> Marktplatz [label="15"];
+Taunus_Platz -> Friedensplatz [label="20"];
+Taunus_Platz -> Kopernikusplatz [label="18"];
+Schlossgartenplatz -> Taunus_Platz[label="5"];
+Schlossgartenplatz -> Kennedyplatz [label="5"];
+Ernst_Ludwigsplatz -> Marktplatz [label="20"];
+Ernst_Ludwigsplatz -> Kennedyplatz [label="30"];
+Friedensplatz -> Marktplatz [label="20"];
+Friedensplatz -> Platz_der_deutschen_Einheit [label="30"];
+Marktplatz -> Ilse_Langner_Platz [label="20"];
+Kennedyplatz -> Ilse_Langner_Platz [label="30"];
+Platz_der_deutschen_Einheit -> Marktplatz [label="20"];
+Kopernikusplatz -> Ilse_Langner_Platz [label="30"];
+}

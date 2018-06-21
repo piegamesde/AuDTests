@@ -1,0 +1,15 @@
+digraph {
+A -> B [label="75"];
+A -> C [label="95"];
+A -> D [label="80"];
+B -> E [label="70"];
+B -> F [label="80"];
+C -> E [label="80"];
+C -> F [label="50"];
+C -> G [label="50"];
+D -> F [label="50"];
+D -> G [label="50"];
+E -> H [label="70"];
+F -> H [label="95"];
+G -> H [label="75"];
+}
