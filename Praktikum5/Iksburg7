@@ -1,0 +1,9 @@
+digraph {
+A -> B [label="10"];
+A -> C [label="10"];
+A -> D [label="8"];
+B -> C [label="3"];
+B -> E [label="5"];
+C -> E [label="15"];
+D -> E [label="3"];
+}

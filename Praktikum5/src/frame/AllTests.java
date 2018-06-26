@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.DisplayName;
@@ -66,10 +67,11 @@ public class AllTests {
 
 		}
 
-		if (((maxEdgeCapacity != usedEdgeCapacity) && (isBold)) || ((maxEdgeCapacity == usedEdgeCapacity) && (!isBold)))
+		if (((maxEdgeCapacity != usedEdgeCapacity) && (isBold)) || ((maxEdgeCapacity == usedEdgeCapacity) && (!isBold))) {
 			return true;
-		else
+		} else {
 			return false;
+		}
 	}
 
 	protected boolean areSourcesSinksMarkedRight(ArrayList<String> graph, String[] sources, String[] destinations) {
@@ -111,8 +113,7 @@ public class AllTests {
 		MaxFlow mFlow = new MaxFlow(filename);
 		return mFlow.findMaxFlow(sources, destinations);
 	}
-	
-	
+
 	@Nested
 	@DisplayName("Iksburg 1")
 	class Iksburg1 {
@@ -538,7 +539,7 @@ public class AllTests {
 			assertTrue(isEdgeMarkedRight(flowGraph, "Kopernikusplatz[ ]*->[ ]*Ilse_Langner_Platz"),
 					"Edge Kopernikusplatz -> Ilse_Langner_Platz was wrongly bolded!");
 		}
-		
+
 		@Test
 		@DisplayName("cuts, from {Luisenplatz, Kantplatz} to Ilse_Langner_Platz")
 		public void testCuts_Iksburg4_Luisenplatz_Kantplatz_to_ILPlatz() {
